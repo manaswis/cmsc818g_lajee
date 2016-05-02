@@ -1,8 +1,9 @@
 """`main` is the top level module for your Flask application."""
 
 # Import the Flask Framework
-from flask import Flask
+from flask import Flask, jsonify
 app = Flask(__name__)
+
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
 
@@ -10,7 +11,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    return 'Hello CMSC818G people!'
+    return 'Hello CMSC818G people! How\'s it going?'
 
 
 @app.errorhandler(404)
@@ -25,6 +26,7 @@ def application_error(e):
     return 'Sorry, unexpected error: {}'.format(e), 500
 
 
+# [START APP]
 if __name__ == '__main__':
     # This is used when running locally. Gunicorn is used to run the
     # application on Google App Engine. See entrypoint in app.yaml.
